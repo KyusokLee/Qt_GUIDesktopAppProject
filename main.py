@@ -33,12 +33,12 @@ class ChatWindow(QWidget):
         push_button.clicked.connect(self.messageSendButtonClicked)
         layout.addWidget(push_button, alignment= Qt.AlignmentFlag.AlignCenter)
 
-        translate_button = QPushButton('翻訳:', self)
+        translate_button = QPushButton('翻訳: ', self)
         translate_button.setFixedSize(150, 35)
         translate_button.clicked.connect(self.translateButtonClicked)
         layout.addWidget(translate_button, alignment= Qt.AlignmentFlag.AlignHCenter)
 
-        self.chatResultLabel = QLabel('Chat:', self)
+        self.chatResultLabel = QLabel('Chat: ', self)
         layout.addWidget(self.chatResultLabel)
 
         self.translateResultLabel = QLabel('翻訳結果:', self)
@@ -55,15 +55,16 @@ class ChatWindow(QWidget):
         print('translate!')
         self.inputText = self.text_edit.toPlainText()
         translatedText = self.translateToJapanese(self.inputText)
-        self.translateResultLabel.setText(translatedText)
+        self.translateResultLabel.setText('翻訳結果: ' + translatedText)
 
     def printTextEdit(self):
         self.sentText = self.text_edit.toPlainText()
         print(self.sentText)
-        self.chatResultLabel.setText(self.sentText)
+        self.chatResultLabel.setText('Chat: ' + self.sentText)
     
     def translateToJapanese(self, text):
-       resultText = self.translator.translate("window", text)
+       print(text)
+       resultText = self.translator.translate("", text)
        return resultText
 
 
