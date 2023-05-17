@@ -1,11 +1,13 @@
 import sys
-from PyQt6.QtCore import Qt, QSize, QUrl
+from PyQt6.QtCore import Qt, QSize, QUrl, QTranslator, QLocale
 from PyQt6.QtWidgets import QApplication, QWidget, QLabel, QPushButton, QTextEdit, QVBoxLayout, QWidgetAction, QMainWindow
 from PyQt6.QtGui import QIcon, QGuiApplication, QAction
 from PyQt6.QtQml import QQmlApplicationEngine
 class ChatWindow(QWidget):
     def __init__(self):
         super().__init__()
+        self.translator = QTranslator()
+        self.translator.load("qtbase_ja.qm")
         self.initUI()
     
     def initUI(self):
@@ -31,8 +33,16 @@ class ChatWindow(QWidget):
         push_button.clicked.connect(self.messageSendButtonClicked)
         layout.addWidget(push_button, alignment= Qt.AlignmentFlag.AlignCenter)
 
+        translate_button = QPushButton('翻訳:', self)
+        translate_button.setFixedSize(150, 35)
+        translate_button.clicked.connect(self.translateButtonClicked)
+        layout.addWidget(translate_button, alignment= Qt.AlignmentFlag.AlignHCenter)
+
         self.chatResultLabel = QLabel('Chat:', self)
         layout.addWidget(self.chatResultLabel)
+
+        self.translateResultLabel = QLabel('翻訳結果:', self)
+        layout.addWidget(self.translateResultLabel)
 
         self.setLayout(layout)
         self.show()
@@ -41,10 +51,21 @@ class ChatWindow(QWidget):
         print('send!')
         self.printTextEdit()
     
+    def translateButtonClicked(self):
+        print('translate!')
+        self.inputText = self.text_edit.toPlainText()
+        translatedText = self.translateToJapanese(self.inputText)
+        self.translateResultLabel.setText(translatedText)
+
     def printTextEdit(self):
-        sentText = self.text_edit.toPlainText()
-        print(sentText)
-        self.chatResultLabel.setText(sentText)
+        self.sentText = self.text_edit.toPlainText()
+        print(self.sentText)
+        self.chatResultLabel.setText(self.sentText)
+    
+    def translateToJapanese(self, text):
+       resultText = self.translator.translate("window", text)
+       return resultText
+
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
