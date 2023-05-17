@@ -67,7 +67,6 @@ class ChatWindow(QWidget):
        resultText = self.translator.translate("", text)
        return resultText
 
-
 if __name__ == '__main__':
     app = QApplication(sys.argv)
     chat = ChatWindow()
