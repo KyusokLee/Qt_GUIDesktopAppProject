@@ -20,11 +20,6 @@ class ChatWindow(QWidget):
         layout.addWidget(self.text_edit)
         self.setWindowTitle('Desktop Chat App')
         self.setWindowIcon(QIcon('ChatAppIcon.png'))
-
-        # exitAction = QWidgetAction()
-        # exitAction.setShortcut('command + Q')
-        # exitAction.setStatusTip('Exit Application')
-        # exitAction.triggered.connect(quit)
         
         push_button = QPushButton('送信', self)
         push_button.setFixedSize(150, 35)
