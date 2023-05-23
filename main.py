@@ -1,13 +1,11 @@
 import sys
-from PyQt6.QtCore import Qt, QSize, QUrl, QTranslator, QLocale
+from PyQt6.QtCore import Qt, QSize, QUrl, QTranslator, QLocale, QObject
 from PyQt6.QtWidgets import QApplication, QWidget, QLabel, QPushButton, QTextEdit, QVBoxLayout, QWidgetAction, QMainWindow
 from PyQt6.QtGui import QIcon, QGuiApplication, QAction
 from PyQt6.QtQml import QQmlApplicationEngine
 class ChatWindow(QWidget):
     def __init__(self):
         super().__init__()
-        self.translator = QTranslator()
-        self.translator.load("qtbase_ja.qm")
         self.initUI()
     
     def initUI(self):
@@ -22,11 +20,6 @@ class ChatWindow(QWidget):
         layout.addWidget(self.text_edit)
         self.setWindowTitle('Desktop Chat App')
         self.setWindowIcon(QIcon('ChatAppIcon.png'))
-
-        # exitAction = QWidgetAction()
-        # exitAction.setShortcut('command + Q')
-        # exitAction.setStatusTip('Exit Application')
-        # exitAction.triggered.connect(quit)
         
         push_button = QPushButton('送信', self)
         push_button.setFixedSize(150, 35)
@@ -63,12 +56,13 @@ class ChatWindow(QWidget):
         self.chatResultLabel.setText('Chat: ' + self.sentText)
     
     def translateToJapanese(self, text):
-       print(text)
-       resultText = self.translator.translate("", text)
-       return resultText
+       return self.tr(text)
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
+    translator = QTranslator()
+    translator.load("app_ja")
+    app.installTranslator(translator)
     chat = ChatWindow()
     sys.exit(app.exec())
 
