@@ -26,7 +26,7 @@ class ChatWindow(QWidget):
         push_button.clicked.connect(self.messageSendButtonClicked)
         layout.addWidget(push_button, alignment= Qt.AlignmentFlag.AlignCenter)
 
-        translate_button = QPushButton('翻訳: ', self)
+        translate_button = QPushButton('翻訳', self)
         translate_button.setFixedSize(150, 35)
         translate_button.clicked.connect(self.translateButtonClicked)
         layout.addWidget(translate_button, alignment= Qt.AlignmentFlag.AlignHCenter)
