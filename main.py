@@ -64,7 +64,7 @@ class QPushButtonClear(QPushButton):
         font.setBold(True)
         self.setFont(font)
 
-class ChatWindow(QWidget):
+class ChatClientWindow(QWidget):
     def __init__(self):
         super().__init__()
         self.client = socket_client.ClientSocket(self)
@@ -198,6 +198,6 @@ if __name__ == '__main__':
     # translator = QTranslator()
     # translator.load("app_ja")
     # app.installTranslator(translator)
-    chat = ChatWindow()
+    chat = ChatClientWindow()
     sys.exit(app.exec())
 
