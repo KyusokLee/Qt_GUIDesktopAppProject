@@ -1,0 +1,46 @@
+QVBoxLayoutCustom {
+  border-radius: 5px;
+}
+
+QGroupBoxCustom {
+  color: black;
+}
+
+QLineEditCustom {
+  color: black;
+  border-radius: 5px;
+}
+
+QListWidgetCustom {
+  color: black;
+}
+
+QTextEditCustom {
+  color: black;
+}
+
+QLabelCustom {
+  color: black;
+}
+
+QPushButtonConnect {
+  width: 100%;
+  height: 15px;
+  background-color: #4CAF50;
+  color: white;
+  border-radius: 5px;
+}
+
+QPushButtonSend {
+  height: 25px;
+  background-color: #2196F3;
+  color: white;
+  border-radius: 5px;
+}
+
+QPushButtonClear {
+  height: 25px;
+  background-color: #E57373;
+  color: white;
+  border-radius: 5px;
+}
