@@ -60,7 +60,7 @@ class ClientSocket:
                 message = str(recv, encoding='utf-8')
                 if message:
                     self.recv.recv_signal.emit(message)
-                    print('受信: ', message)
+                    print('[受信]: ', message)
         
         self.stop()
 
